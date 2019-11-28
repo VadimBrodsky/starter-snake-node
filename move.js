@@ -1,4 +1,4 @@
-const { getRandomInt } = require('./utils');
+const { getRandomInt, createGrid, parseGrid, getGoodMoves } = require('./utils');
 /*
 {
   "game": { "id": "game-id-string" },
@@ -23,13 +23,23 @@ const { getRandomInt } = require('./utils');
 }
 */
 
-
 const move = (request, response) => {
-  const { board, game, turn, you } = request;
+  const { board, game, turn, you } = request.body;
+  const grid = parseGrid(createGrid(board.width, board.height), board.snakes, board.food);
+
+  // console.log(grid);
   // debugger;
-  // console.log(request.body);
-  const move = getRandomInt(0, 4);
-  const moves = ['up','down','left','right'];
+
+  // const moves = ['up', 'down', 'left', 'right'];
+  const moves = getGoodMoves(grid, you.body[0]);
+  const move = getRandomInt(0, moves.length);
+
+  /*
+  console.log('-----------------');
+  console.log(moves);
+  console.log(moves[move]);
+  console.log('-----------------');
+  */
 
   // Response data
   const data = {
@@ -40,3 +50,28 @@ const move = (request, response) => {
 };
 
 module.exports = move;
+
+// init
+// evaluate
+// terminate?
+// select
+// variation
+
+/*
+const randomSeed = 1;
+const mutationRate = 0.05;
+const mustationStep = 0.2;
+
+const score = 0;
+const moves = ['up', 'down', 'left', 'right'];
+
+const genomes = [];
+
+const genome = {
+  id: Math.random(),
+  action: getRandomInt(0, 4),
+  score: Math.random() - 0.5,
+  length: Math.random() - 0.5,
+  health: Math.random() - 0.5,
+};
+*/
