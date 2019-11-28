@@ -21,14 +21,23 @@
   }
 }
 */
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
 const move = (request, response) => {
   const { board, game, turn, you } = request;
-  console.log(request.body);
-  debugger;
+  // debugger;
+  // console.log(request.body);
+  cosnt move = getRandomInt(0, 3);
+  const moves = ['up','down','left','right'];
 
   // Response data
   const data = {
-    move: 'up', // one of: ['up','down','left','right']
+    move: moves[move], // one of: []
   };
 
   return response.json(data);
