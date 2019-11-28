@@ -1,3 +1,4 @@
+const { getRandomInt } = require('./utils');
 /*
 {
   "game": { "id": "game-id-string" },
@@ -22,22 +23,17 @@
 }
 */
 
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-}
 
 const move = (request, response) => {
   const { board, game, turn, you } = request;
   // debugger;
   // console.log(request.body);
-  cosnt move = getRandomInt(0, 3);
+  cosnt move = getRandomInt(0, 4);
   const moves = ['up','down','left','right'];
 
   // Response data
   const data = {
-    move: moves[move], // one of: []
+    move: moves[move],
   };
 
   return response.json(data);
