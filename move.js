@@ -28,7 +28,7 @@ const move = (request, response) => {
   const { board, game, turn, you } = request;
   // debugger;
   // console.log(request.body);
-  cosnt move = getRandomInt(0, 4);
+  const move = getRandomInt(0, 4);
   const moves = ['up','down','left','right'];
 
   // Response data
