@@ -29,7 +29,7 @@ app.post('/start', (request, response) => {
   const data = {
     color: '#78866b',
     headType: 'fang',
-    tailType: 'sharp',
+    tailType: 'hook',
   };
 
   return response.json(data);
